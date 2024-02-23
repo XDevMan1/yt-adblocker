@@ -1,58 +1,92 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<title>Pblocker yt ad bypass</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<link href="style.css" rel="stylesheet" type="text/css" />
-	<!-- FONTS -->
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
-	 rel="stylesheet">
-  <!-- Analytics -->
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QR0J225RDB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Ad Blocker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
 
-  gtag('config', 'G-QR0J225RDB');
-</script>
+    h1 {
+        color: #333;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 80%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #d32f2f;
+    }
+
+    #player {
+        margin-top: 20px;
+    }
+
+  
+    .ytp-ad-overlay-container {
+        display: none !important;
+    }
+
+    
+    .video-ads {
+        display: none !important;
+    }
+
+   
+    .ytd-display-ad-renderer {
+        display: none !important;
+    }
+</style>
 </head>
-
 <body>
-	<h1 class="center">Pblocker yt ad bypass</h5>
-		<div class=center>
-			<h3>Insert YouTube Link:</h3>
-			<input id="url" type="text" placeholder="" required>
-      <button id="submit" class="submit-button">Watch</button>
-  </div>
-  <br>
-  <div id="instructions" class="center">
-    <hr style="width:25% !important">
-    <h3>About</h3>
-    <p>Use to get around blocks, and watch YouTube without ads and (mostly) tracker free! Just paste in the link and click Watch!</p>
-    <h3>Not Working?</h3>
-    <p>Make sure there isn't anything funky at the end of the link, just the video ID!</p>
-    
-    
+<h1>YouTube Ad Blocker</h1>
+<p>Enter a YouTube video URL to watch without ads:</p>
+<input type="text" id="videoUrl" placeholder="Enter YouTube video URL">
+<button onclick="blockAds()" id="blockButton">Block Ads</button>
+<div id="player"></div>
+<script>
+    function blockAds() {
+        const videoUrl = document.getElementById('videoUrl').value;
+        if (!videoUrl.includes('youtube.com/watch')) {
+            alert('Invalid YouTube video URL. Please enter a valid URL.');
+            return;
+        }
 
-    </div>
-	<div id="video-holder-holder">
-		<div id="video-holder" class="center" style="display:none;">
-			<hr>
-			<iframe id="video" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?wmode=transparent&amp;iv_load_policy=3&amp;autoplay=0&amp;html5=1&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=0&amp;theme=light" frameborder="0" scrolling="no" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen=""></iframe>
-		</div>
-	</div>
-  <hr class="space">
+        const videoId = videoUrl.split('v=')[1];
+        const ampersandPosition = videoId.indexOf('&');
+        if (ampersandPosition !== -1) {
+            videoId = videoId.substring(0, ampersandPosition);
+        }
+
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        document.getElementById('player').innerHTML = `<iframe width="560" height="315" src="${embedUrl}" frameborder="0" allowfullscreen></iframe>`;
+    }
+</script>
 </body>
-    <footer class="center">
-    	<br>
-      <hr>
-    	<p>Made by <a class="linelink" href="aboutme.html" target="_blank">xdevman9</a><br>
-		Join our <a class="linelink" href="https://discord.gg/PWER7H2DFD" target="_blank">Discord Server!</a></p>
-    </footer>
-	<script src="script.js"></script>
 </html>
